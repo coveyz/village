@@ -19,5 +19,5 @@ export const Captcha = () => {
   })
 
 
-  return { ...toRefs(state) }
+  return { ...toRefs(state), getCaptcha }
 }
