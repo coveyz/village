@@ -1,4 +1,4 @@
-import { reactive, toRefs, onMounted } from 'vue'
+import { reactive, toRefs, onMounted } from "vue";
 
 /**
  ** 验证码
@@ -6,18 +6,17 @@ import { reactive, toRefs, onMounted } from 'vue'
 export const Captcha = () => {
   const state = reactive({
     code: {
-      captcha: ''
-    }
-  })
+      captcha: "",
+    },
+  });
 
   const getCaptcha = () => {
-    state.code.captcha = '/api/captcha?_t' + new Date().getTime();
-  }
+    state.code.captcha = "/api/captcha?_t" + new Date().getTime();
+  };
 
   onMounted(() => {
-    getCaptcha()
-  })
+    getCaptcha();
+  });
 
-
-  return { ...toRefs(state), getCaptcha }
-}
+  return { ...toRefs(state), getCaptcha };
+};

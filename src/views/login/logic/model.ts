@@ -1,7 +1,11 @@
-import { reactive, toRefs } from 'vue'
-import { successMsg } from '@/utils/box'
+import { reactive, toRefs } from "vue";
+import { successMsg } from "@/utils/box";
+import { useStore } from '@/store'
+import { useRouter } from 'vue-router';
 
 export const UserModel = () => {
+  const store = useStore()
+  const router = useRouter()
 
   const validatePassword = (rule: any, value: string, callback: any): void => {
     if (value.length < 6) {
@@ -9,35 +13,39 @@ export const UserModel = () => {
     } else {
       callback();
     }
-  }
+  };
 
   const state = reactive({
     model: {
-      email: 'zhangkairong123@qq.com',
-      captcha: '',
-      emailcode: '',
-      passwd: '123456'
+      email: "zhangkairong123@qq.com",
+      captcha: "",
+      emailcode: "",
+      passwd: "123456",
     },
     loginFormRef: null,
     rules: {
-      email: [
-        { required: true, message: '请输入邮箱', trigger: 'blur' }
-      ],
-      captcha: [
-        { required: true, message: '请输入验证码', trigger: 'blur' }
-      ],
+      email: [{ required: true, message: "请输入邮箱", trigger: "blur" }],
+      captcha: [{ required: true, message: "请输入验证码", trigger: "blur" }],
       emailcode: [
-        { required: true, message: '请输入邮箱验证码', trigger: 'blur' }
+        { required: true, message: "请输入邮箱验证码", trigger: "blur" },
       ],
       passwd: [
         { required: true, validator: validatePassword, trigger: "blur" },
       ],
     },
-  })
+  });
 
   const submit = () => {
-    console.log('submit')
+    (state.loginFormRef as any).validate(async (valid: boolean) => {
+      if (valid) {
+        store.dispatch('user/login', state.model).then(() => {
+          successMsg('登录 成功')
+          router.push({ path: '/' })
+        }).catch(err => {
+          console.log('loading关')
+        })
+      }
+    })
   }
-
-  return { ...toRefs(state), submit }
-}
+  return { ...toRefs(state), submit };
+};

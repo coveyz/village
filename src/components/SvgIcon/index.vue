@@ -1,9 +1,11 @@
 <template>
-  <svg class="svg-icon ">
-    <use :xlink:href="iconName"
-         :style="styleExternalIcon"
-         aria-hidden="true"
-         :class="svgClass" />
+  <svg class="svg-icon">
+    <use
+      :xlink:href="iconName"
+      :style="styleExternalIcon"
+      aria-hidden="true"
+      :class="svgClass"
+    />
   </svg>
 </template>
 
