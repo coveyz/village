@@ -1,8 +1,7 @@
 import axios from "axios";
 import { errorMsg } from "@/utils/box";
-// import { getToken } from '@/utils/auth'
-
-// import { useStore } from '@/store'
+import { getToken } from '@/utils/auth'
+import { useStore } from '@/store'
 
 const http = axios.create({
   timeout: 5000,
@@ -10,12 +9,11 @@ const http = axios.create({
 
 http.interceptors.request.use(
   (config) => {
-    //todo token
-    // const store = useStore()
-    // if (store.getters.token) {
-    // config.headers['Authorization'] = 'Bearer ' + getToken()
-    // }
-    //todo token
+    const store = useStore()
+    if (store.getters.token) {
+      (config.headers as any)['Authorization'] = 'Bearer ' + getToken()
+    }
+
     return config;
   },
   (error) => {

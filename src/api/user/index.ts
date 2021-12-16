@@ -17,11 +17,17 @@ export const registerUser = (requestData: RegisterData) => {
   });
 };
 
-
 export const loginUser = (requestData: LoginData) => {
   return http({
     method: "POST",
     data: requestData,
-    url: '/api/user/login'
-  })
-}
+    url: "/api/user/login",
+  });
+};
+
+export const permissionList = () => {
+  return http({
+    method: "POST",
+    url: "/api/user/permission",
+  });
+};

@@ -6,7 +6,7 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 
 import router from "@/router";
-import {store} from "@/store";
+import { store } from "@/store";
 
 //* 公共样式
 import "@/styles/index.scss";
@@ -14,6 +14,9 @@ import "@/styles/index.scss";
 //* Icon
 import "@/icons";
 import SvgIcon from "@/components/SvgIcon/index.vue";
+
+//* 全局权限
+import "./permission";
 
 const app = createApp(App);
 

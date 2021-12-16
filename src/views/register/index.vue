@@ -1,9 +1,11 @@
 <template>
-  <el-form :model="formMoal"
-           :rules="rules"
-           label-position="left"
-           ref="formRef"
-           class="user-form">
+  <el-form
+    :model="formMoal"
+    :rules="rules"
+    label-position="left"
+    ref="formRef"
+    class="user-form"
+  >
     <div class="title-container">
       <h3 class="title">Register Form</h3>
     </div>
@@ -14,23 +16,20 @@
       </span>
       <el-input v-model="formMoal.email"></el-input>
     </el-form-item>
-    <el-form-item prop="captcha"
-                  class="capcha-container">
-      <div style="display: flex;">
+    <el-form-item prop="captcha" class="capcha-container">
+      <div style="display: flex">
         <span class="svg-container">
           <svg-icon icon-class="captcha" />
         </span>
         <el-input v-model="formMoal.captcha"></el-input>
       </div>
       <div class="captcha">
-        <img :src="code.captcha"
-             @click="getCaptcha">
+        <img :src="code.captcha" @click="getCaptcha" />
       </div>
     </el-form-item>
 
-    <el-form-item prop="nickname"
-                  class="capcha-container">
-      <div style="display: flex;">
+    <el-form-item prop="nickname" class="capcha-container">
+      <div style="display: flex">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
@@ -42,27 +41,31 @@
       <span class="svg-container">
         <svg-icon icon-class="password" />
       </span>
-      <el-input type='password'
-                ref="password"
-                v-model="formMoal.passwd"></el-input>
+      <el-input
+        type="password"
+        ref="password"
+        v-model="formMoal.passwd"
+      ></el-input>
     </el-form-item>
     <el-form-item prop="repasswd">
       <span class="svg-container">
         <svg-icon icon-class="password" />
       </span>
-      <el-input type="password"
-                ref="repasswd"
-                v-model="formMoal.repasswd"></el-input>
+      <el-input
+        type="password"
+        ref="repasswd"
+        v-model="formMoal.repasswd"
+      ></el-input>
     </el-form-item>
-    <el-button :loading="loading"
-               type="primary"
-               style="width:100%;margin-bottom:30px;"
-               @click.prevent="submit">注册</el-button>
-    <div class=""
-         style="position: relative;height: 40px;">
-      <el-button class="thirdparty-button"
-                 @click="jumpLogin"
-                 type="primary">
+    <el-button
+      :loading="loading"
+      type="primary"
+      style="width: 100%; margin-bottom: 30px"
+      @click.prevent="submit"
+      >注册</el-button
+    >
+    <div class="" style="position: relative; height: 40px">
+      <el-button class="thirdparty-button" @click="jumpLogin" type="primary">
         登录
       </el-button>
     </div>

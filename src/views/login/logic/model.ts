@@ -1,11 +1,11 @@
 import { reactive, toRefs } from "vue";
 import { successMsg } from "@/utils/box";
-import { useStore } from '@/store'
-import { useRouter } from 'vue-router';
+import { useStore } from "@/store";
+import { useRouter } from "vue-router";
 
 export const UserModel = () => {
-  const store = useStore()
-  const router = useRouter()
+  const store = useStore();
+  const router = useRouter();
 
   const validatePassword = (rule: any, value: string, callback: any): void => {
     if (value.length < 6) {
@@ -38,14 +38,17 @@ export const UserModel = () => {
   const submit = () => {
     (state.loginFormRef as any).validate(async (valid: boolean) => {
       if (valid) {
-        store.dispatch('user/login', state.model).then(() => {
-          successMsg('登录 成功')
-          router.push({ path: '/' })
-        }).catch(err => {
-          console.log('loading关')
-        })
+        store
+          .dispatch("user/login", state.model)
+          .then(() => {
+            successMsg("登录 成功");
+            router.push({ path: "/" });
+          })
+          .catch((err) => {
+            console.log("loading关");
+          });
       }
-    })
-  }
+    });
+  };
   return { ...toRefs(state), submit };
 };

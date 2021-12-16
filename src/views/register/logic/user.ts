@@ -6,11 +6,7 @@ import { registerUser } from "@/api/user";
 import { successMsg } from "@/utils/box";
 
 export const RegisterUser = () => {
-  const validatepasswd = (
-    rule: any,
-    value: string,
-    callback: any
-  ): void => {
+  const validatepasswd = (rule: any, value: string, callback: any): void => {
     if (value.length < 6) {
       callback(new Error("密码不能少于6位"));
     } else {
