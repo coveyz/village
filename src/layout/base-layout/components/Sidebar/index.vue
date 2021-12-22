@@ -1,5 +1,7 @@
 <template>
   <div :style="variables">
+    <!-- todo logo -->
+
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu :default-active="activeMenu"
                :collapse="isCollapse"
@@ -14,23 +16,23 @@
                       :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
+
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useRoute, RouteRecordRaw } from "vue-router";
+import { useStore } from "@/store";
 import SidebarItem from "./SidebarItem.vue";
 import variables from "@/styles/_variables.scss";
 import { resize } from "@/layout/base-layout/logic/resize";
-import { useStore } from "@/store";
-import { useRoute, RouteRecordRaw } from "vue-router";
 
 export default defineComponent({
   components: { SidebarItem },
   setup() {
     const store = useStore();
     const route = useRoute();
-
     const { sidebar } = resize();
 
     const routes = computed(() => {
@@ -49,6 +51,8 @@ export default defineComponent({
       return store.state.setting.sidebarLogo;
     });
     const isCollapse = computed(() => {
+      // return false;
+      console.log("isCollapse==>", sidebar.value.opened);
       return !sidebar.value.opened;
     });
 
@@ -64,4 +68,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+::v-deep .el-sub-menu__title {
+  display: inherit;
+}
 </style>

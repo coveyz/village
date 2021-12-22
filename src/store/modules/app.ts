@@ -1,4 +1,6 @@
-import { Module, Store as VuexStore } from "vuex";
+
+
+import { Module, Store as VuexStore } from 'vuex'
 import { RootState } from '@/store'
 import { AppState } from '@/store/type'
 import { getSidebarStatus, setSidebarStatus } from '@/utils/auth'
@@ -17,12 +19,12 @@ const mutations = {
   TOGGLE_SIDEBAR(state: AppState) {
     state.sidebar.opened = !state.sidebar.opened
     state.sidebar.withoutAnimation = false
-
-    if (state.sidebar.withoutAnimation) {
+    if (state.sidebar.opened) {
       setSidebarStatus('opened')
     } else {
       setSidebarStatus('closed')
     }
+
   }
 }
 

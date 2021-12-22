@@ -105,6 +105,7 @@ export default defineComponent({
           }
         }
       }
+
       return { ...props.item, path: "" };
     });
 
@@ -122,7 +123,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
+
 </style>
 
 
