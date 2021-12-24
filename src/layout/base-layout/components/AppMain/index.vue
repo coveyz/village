@@ -2,9 +2,7 @@
   <section class="app-main">
     <transition name="fade-transform"
                 mode="out-in">
-      <div class="components-container">
-        <router-view />
-      </div>
+      <router-view />
     </transition>
   </section>
 

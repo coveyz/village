@@ -1,45 +1,48 @@
 <template>
-  <el-button type="primary"
-             size="small"
-             @click="upload">文件上传</el-button>
-  <br />
-  <br />
-  <!-- 文件区域 -->
-  <div id="drag"
-       ref="dragRef">
-    <input type="file"
-           name="file"
-           @change="handleFileChanges">
-  </div>
-  <!-- 布隆过滤器 -->
-  <div class="hash-progress-style">
-    <p>布隆过滤器 计算hash的进度</p>
-    <el-progress :stroke-width='20'
-                 :text-inside="true"
-                 :percentage="hashProgress"></el-progress>
-  </div>
-  <!-- 时间切片 -->
-  <div class="hash-progress-style">
-    <p>时间切片 计算hash的进度</p>
-    <el-progress :stroke-width='20'
-                 :text-inside="true"
-                 :percentage="timeHashProgress"></el-progress>
-  </div>
+  <div class="components-container">
 
-  <div class="cube-container"
-       :style="{width:cubeWidth+'px'}">
-    <div class="cube"
-         v-for="chunk in chunks"
-         :key="chunk.name">
-      <div :class="{
+    <el-button type="primary"
+               size="small"
+               @click="upload">文件上传</el-button>
+    <br />
+    <br />
+    <!-- 文件区域 -->
+    <div id="drag"
+         ref="dragRef">
+      <input type="file"
+             name="file"
+             @change="handleFileChanges">
+    </div>
+    <!-- 布隆过滤器 -->
+    <div class="hash-progress-style">
+      <p>布隆过滤器 计算hash的进度</p>
+      <el-progress :stroke-width='20'
+                   :text-inside="true"
+                   :percentage="hashProgress"></el-progress>
+    </div>
+    <!-- 时间切片 -->
+    <div class="hash-progress-style">
+      <p>时间切片 计算hash的进度</p>
+      <el-progress :stroke-width='20'
+                   :text-inside="true"
+                   :percentage="timeHashProgress"></el-progress>
+    </div>
+
+    <div class="cube-container"
+         :style="{width:cubeWidth+'px'}">
+      <div class="cube"
+           v-for="chunk in chunks"
+           :key="chunk.name">
+        <div :class="{
               'uploading':chunk.progress>0&&chunk.progress<100,
               'success':chunk.progress==100,
               'error':chunk.progress<0
             }"
-           :style="{height:chunk.progress+'%'}">
-        <i class="el-icon-loading"
-           style="color:#f56c6c"
-           v-if="chunk.progress<100 && chunk.progress>0"></i>
+             :style="{height:chunk.progress+'%'}">
+          <i class="el-icon-loading"
+             style="color:#f56c6c"
+             v-if="chunk.progress<100 && chunk.progress>0"></i>
+        </div>
       </div>
     </div>
   </div>

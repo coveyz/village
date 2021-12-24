@@ -23,6 +23,12 @@ const componentsRoutes: RouteRecordRaw = {
       name: 'Process',
       meta: { title: '流程图', limit: 'components', icon: '' }
     },
+    {
+      path: 'record',
+      component: () => import('@/views/components-demo/record/index.vue'),
+      name: 'Record',
+      meta: { title: '录屏', limit: 'components', icon: '' }
+    },
   ],
 };
 
