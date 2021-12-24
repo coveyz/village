@@ -1,0 +1,15 @@
+// fade-transform
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+	transition: all 0.95s;
+}
+.fade-transform-leave-to {
+	// background-color: red;
+	opacity: 0;
+	transform: translateX(30px);
+}
+.fade-transform-enter-from {
+	opacity: 0;
+	transform: translateX(-30px);
+	// background-color: gold;
+}
