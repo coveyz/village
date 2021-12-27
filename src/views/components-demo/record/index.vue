@@ -48,7 +48,7 @@ export default defineComponent({
 
         let a = document.createElement("a");
         a.href = url;
-        a.download = "video.html";
+        a.download = "video.webm";
         a.click();
       });
 
