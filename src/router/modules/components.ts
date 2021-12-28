@@ -34,6 +34,12 @@ const componentsRoutes: RouteRecordRaw = {
       component: () => import('@/views/components-demo/perception/index.vue'),
       name: 'Perception',
       meta: { title: '方向感知', limit: 'components', icon: '' }
+    },
+    {
+      path: 'search',
+      component: () => import('@/views/components-demo/search/index.vue'),
+      name: 'Search',
+      meta: { title: '搜索框', limit: 'components', icon: '' }
     }
   ],
 };
