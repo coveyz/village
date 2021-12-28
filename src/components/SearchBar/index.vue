@@ -10,27 +10,36 @@
                   :style="{width: item.width ? `${item.width}px` : '300px'}"
                   :class="{ textSoLong: item.title.length > 6 }"
                   :label="item.title">
-      <!-- 输入 -->
+      <!-- 🍌 输入 🍌 -->
       <input-item v-if="item.type === 'input'"
                   v-model="item.value"
                   :item="item" />
+      <!-- 🥔 单选 选择 🥔 -->
+      <select-item v-if="item.type === 'select'"
+                   :item="item"
+                   v-model="item.value"
+                   :searchOptions="searchOptions"
+                   @selectEventCollection="selectEventCollection" />
     </el-form-item>
   </el-form>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { InputItem } from "./components";
+import { InputItem, SelectItem } from "./components";
+import { OptionsState } from "@/components/SearchBar/type";
 
 export default defineComponent({
   props: {
     config: {
-      type: Object as PropType<{ search: any[] }>,
+      type: Object as PropType<{ search: any[] }>, //todo
       required: true,
     },
-    //todo options
+    searchOptions: {
+      type: Object as PropType<Record<string, OptionsState[]>>,
+    },
   },
-  components: { InputItem },
+  components: { InputItem, SelectItem },
   setup() {
     return {};
   },
@@ -62,6 +71,9 @@ export default defineComponent({
       });
 
       item.title = item.title === "显示" ? "隐藏" : "显示";
+    },
+    selectEventCollection(info: any) {
+      console.log("selectEventCollection-info=>", info);
     },
   },
 });

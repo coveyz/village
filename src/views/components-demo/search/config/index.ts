@@ -8,7 +8,42 @@ const data = {
     level: 'ordinary',
     show: true,
     maxlength: 20
-  },]
+  },
+  {
+    name: 'xx',
+    type: 'select',
+    title: '下拉框',
+    option: 'xxx',
+    level: 'ordinary',
+    show: true,
+    isEvent: true,
+  }, {
+    name: 'xx2', type: 'select', title: '下拉框2', value: '',
+    option: [{
+      value: "Option12",
+      label: "Option122",
+    },
+    {
+      value: "Option2222",
+      label: "Option2222",
+      disabled: true,
+    },
+    {
+      value: "Option32222",
+      label: "Option32222",
+      disabled: true,
+    },
+    {
+      value: "Option42222",
+      label: "Option42222",
+    },
+    {
+      value: "Option52222",
+      label: "Option52222",
+    },],
+    show: true, level: 'special',
+  },
+  ]
 }
 
 export default data
