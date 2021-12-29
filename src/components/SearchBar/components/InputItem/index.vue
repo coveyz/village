@@ -1,6 +1,5 @@
 <template>
   <el-input :value="item.value"
-            size="small"
             clearable
             :placeholder="`请输入${item.title}`"
             :maxlength="item.maxlength ? item.maxlength : 20" />

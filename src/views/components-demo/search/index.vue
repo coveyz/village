@@ -7,16 +7,10 @@
                 :searchOptions="searchOptions" />
 
     <!-- 配置文件信息 -->
-    <div class="configItemStyle"> Input 类型的配置文件
-      <div v-for="item in getConfigItem('input')"
-           :key="item.name"
-           style="margin-bottom: 5px">
-        {{ item }}
-      </div>
-    </div>
-    <div class="configItemStyle"> Select 类型的配置文件
-
-      <div v-for="item in getConfigItem('select')"
+    <div class="configItemStyle"
+         v-for="(info,index) in configInfo"
+         :key="index"> {{info}} 类型的配置文件
+      <div v-for="item in getConfigItem(info)"
            :key="item.name"
            style="margin-bottom: 5px">
         {{ item }}
@@ -36,6 +30,7 @@ export default defineComponent({
     return {
       configData: data,
       searchOptions: {},
+      configInfo: ["input", "select", "date", "daterange"],
     };
   },
   created() {

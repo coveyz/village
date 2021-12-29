@@ -20,14 +20,26 @@
                    v-model="item.value"
                    :searchOptions="searchOptions"
                    @selectEventCollection="selectEventCollection" />
+      <!-- 🌳 日期选择 🌳 -->
+      <date-item v-if="item.type === 'date'"
+                 :item="item"
+                 v-model="item.value" />
+      <!-- 💣 日期区间 💣 -->
+      <daterange-item v-if="item.type === 'daterange'"
+                      v-model="item.value"
+                      :item="item"
+                      @daterang-change="daterangChange" />
     </el-form-item>
   </el-form>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { InputItem, SelectItem } from "./components";
-import { OptionsState } from "@/components/SearchBar/type";
+import { InputItem, SelectItem, DateItem, DaterangeItem } from "./components";
+import {
+  OptionsState,
+  SearchItemOfDaterange,
+} from "@/components/SearchBar/type";
 
 export default defineComponent({
   props: {
@@ -39,7 +51,7 @@ export default defineComponent({
       type: Object as PropType<Record<string, OptionsState[]>>,
     },
   },
-  components: { InputItem, SelectItem },
+  components: { InputItem, SelectItem, DateItem, DaterangeItem },
   setup() {
     return {};
   },
@@ -74,6 +86,12 @@ export default defineComponent({
     },
     selectEventCollection(info: any) {
       console.log("selectEventCollection-info=>", info);
+    },
+    //* 时间区间 change 时间
+    daterangChange(info: { time: string[]; config: SearchItemOfDaterange }) {
+      const { time, config } = info;
+      config.startValue = time ? time[0] : "";
+      config.endValue = time ? time[1] : "";
     },
   },
 });
