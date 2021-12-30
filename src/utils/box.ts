@@ -32,7 +32,7 @@ export const getPageTitle = (pageTitle: string): string => {
 };
 
 /**
- * 判断当前是否是空对象
+ ** 判断当前是否是空对象
  * @param object
  * @returns boolean
  */
@@ -50,3 +50,16 @@ export const isEmptyObject = (object: any): boolean => {
 export const isExcel = (file: File) => {
   return /\.(xlsx|xls|csv)$/.test(file.name);
 };
+
+/**
+ ** 整合 请求选项数据
+ */
+export type IntegrationDataState = Record<string, any[]>
+export const integrationSelectData = (arr: IntegrationDataState[]): IntegrationDataState => {
+  return arr.reduce((acc: IntegrationDataState, cur: IntegrationDataState) => {
+    for (const key in cur) {
+      acc[key] = cur[key]
+    }
+    return acc
+  }, {})
+}

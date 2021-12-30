@@ -45,3 +45,4 @@ export type SearchItemOfInput = SearchState & SearchInputMaxLength
 export type SeatchItemOfSelect = SearchState & SelectItemState
 export type SearchItemOfDate = SearchState
 export type SearchItemOfDaterange = SearchState & DaterangItemState
+export type SearchItemOfTree = SearchState & SelectItemState & { label: string }

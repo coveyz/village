@@ -29,19 +29,32 @@
                       v-model="item.value"
                       :item="item"
                       @daterang-change="daterangChange" />
+      <!-- 🔫 树形选择 🔫 -->
+      <tree-item v-if="item.type === 'tree'"
+                 v-model="item.value"
+                 :searchOptions="searchOptions"
+                 :item="item"
+                 @selectTreeInfo="selectTreeInfo" />
     </el-form-item>
   </el-form>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { InputItem, SelectItem, DateItem, DaterangeItem } from "./components";
+import {
+  InputItem,
+  SelectItem,
+  DateItem,
+  DaterangeItem,
+  TreeItem,
+} from "./components";
 import {
   OptionsState,
   SearchItemOfDaterange,
 } from "@/components/SearchBar/type";
 
 export default defineComponent({
+  components: { InputItem, SelectItem, DateItem, DaterangeItem, TreeItem },
   props: {
     config: {
       type: Object as PropType<{ search: any[] }>, //todo
@@ -51,7 +64,6 @@ export default defineComponent({
       type: Object as PropType<Record<string, OptionsState[]>>,
     },
   },
-  components: { InputItem, SelectItem, DateItem, DaterangeItem },
   setup() {
     return {};
   },
@@ -92,6 +104,12 @@ export default defineComponent({
       const { time, config } = info;
       config.startValue = time ? time[0] : "";
       config.endValue = time ? time[1] : "";
+    },
+    selectTreeInfo(info: any) {
+      console.log(info);
+      const { data, config } = info;
+      config.value = data.id || "";
+      config.label = data.label || "";
     },
   },
 });

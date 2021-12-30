@@ -23,6 +23,7 @@
 import { defineComponent } from "vue";
 import data from "./config/index";
 import { SearchBar } from "@/components";
+import { integrationSelectData, IntegrationDataState } from "@/utils/box";
 
 export default defineComponent({
   components: { SearchBar },
@@ -30,22 +31,68 @@ export default defineComponent({
     return {
       configData: data,
       searchOptions: {},
-      configInfo: ["input", "select", "date", "daterange"],
+      configInfo: ["input", "select", "date", "daterange", "tree"],
     };
   },
   created() {
     this.getInit();
   },
   methods: {
+    selectOption(): Promise<IntegrationDataState> {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const list = [{ label: "text1", value: "text1-value" }];
+          resolve({ xxx: list, qq: ["12", "4"] });
+        }, 1000);
+      });
+    },
+    selectTreeData(): Promise<IntegrationDataState> {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const list = [
+            {
+              label: "Level one 1",
+              id: "Level one 1",
+              children: [
+                {
+                  label: "Level two 1-1",
+                  id: "Level two 1-1",
+                  children: [
+                    {
+                      label: "Level three 1-1-1",
+                      id: "Level three 1-1-1",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Level one 2",
+              id: "Level one 2",
+              children: [
+                {
+                  label: "Level two 2-1",
+                  id: "Level two 2-1",
+                  children: [
+                    {
+                      label: "Level three 2-1-1",
+                      id: "Level three 2-1-1",
+                    },
+                  ],
+                },
+              ],
+            },
+          ];
+          resolve({ treeItem2: list });
+        }, 1000);
+      });
+    },
     getInit() {
-      setTimeout(() => {
-        this.searchOptions = Object.assign(
-          {},
-          { xxx: [{ label: "text1", value: "text1-value" }] }
-        );
-
-        console.log("???", this.searchOptions);
-      }, 1000);
+      const box = [this.selectOption(), this.selectTreeData()];
+      Promise.all(box).then((res) => {
+        const data = integrationSelectData(res);
+        this.searchOptions = Object.assign({}, data);
+      });
     },
     getConfigItem(type: string) {
       return this.configData["search"].filter((item) => {

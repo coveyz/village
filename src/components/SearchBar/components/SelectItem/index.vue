@@ -1,7 +1,7 @@
 <template>
   <el-select :value="item.value"
              size="small"
-             :placeholder="`请输入${item.title}`"
+             :placeholder="`请选择${item.title}`"
              @change="(data ='') => changeSelectItem(item,data)"
              clearable>
     <el-option v-for="item in getOptions"
