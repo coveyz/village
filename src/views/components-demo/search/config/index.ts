@@ -1,3 +1,6 @@
+import { factory } from "@/utils/box"
+
+
 const data = {
   search: [
     {
@@ -9,6 +12,11 @@ const data = {
       level: 'ordinary',
       show: true,
       maxlength: 20
+    },
+    {
+      type: 'input',
+      name: 'inputTestItem',
+      title: '输入factory'
     },
     {
       name: 'xx',
@@ -49,110 +57,109 @@ const data = {
       show: true,
       level: 'special',
     },
-    {
-      name: 'dateItem',
-      type: 'date',
-      title: '日期输入',
-      value: '',
-      show: true,
-      level: 'special'
-    },
-    {
-      name: 'treeItem',
-      type: 'tree',
-      title: '树状选择',
-      value: '',
-      show: true,
-      level: 'special',
-      label: '',
-      option: [
-        {
-          label: "Level one 1",
-          id: 'Level one 1',
-          children: [
-            {
-              label: "Level two 1-1",
-              id: "Level two 1-1",
-              children: [
-                {
-                  label: "Level three 1-1-1",
-                  id: "Level three 1-1-1",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: "Level one 2",
-          id: "Level one 2",
-          children: [
-            {
-              label: "Level two 2-1",
-              id: "Level two 2-1",
-              children: [
-                {
-                  label: "Level three 2-1-1",
-                  id: "Level three 2-1-1",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: "Level one 3",
-          id: "Level one 3",
-          children: [
-            {
-              label: "Level two 3-1",
-              id: "Level two 3-1",
-              children: [
-                {
-                  label: "Level three 3-1-1",
-                  id: "Level three 3-1-1",
-                },
-              ],
-            },
-            {
-              label: "Level two 3-2",
-              id: "Level two 3-2",
-              children: [
-                {
-                  label: "Level three 3-2-1",
-                  id: "Level three 3-2-1",
-                },
-              ],
-            },
-          ],
-        },
-      ]
-    },
-    {
-      name: 'treeItem2',
-      type: 'tree',
-      title: '树状选择2',
-      value: '',
-      show: true,
-      level: 'special',
-      label: '',
-      option: 'treeItem2'
-    },
+    // {
+    //   name: 'dateItem',
+    //   type: 'date',
+    //   title: '日期输入',
+    //   value: '',
+    //   show: true,
+    //   level: 'special'
+    // },
+    // {
+    //   name: 'treeItem',
+    //   type: 'tree',
+    //   title: '树状选择',
+    //   value: '',
+    //   show: true,
+    //   level: 'special',
+    //   label: '',
+    //   option: [
+    //     {
+    //       label: "Level one 1",
+    //       id: 'Level one 1',
+    //       children: [
+    //         {
+    //           label: "Level two 1-1",
+    //           id: "Level two 1-1",
+    //           children: [
+    //             {
+    //               label: "Level three 1-1-1",
+    //               id: "Level three 1-1-1",
+    //             },
+    //           ],
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       label: "Level one 2",
+    //       id: "Level one 2",
+    //       children: [
+    //         {
+    //           label: "Level two 2-1",
+    //           id: "Level two 2-1",
+    //           children: [
+    //             {
+    //               label: "Level three 2-1-1",
+    //               id: "Level three 2-1-1",
+    //             },
+    //           ],
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       label: "Level one 3",
+    //       id: "Level one 3",
+    //       children: [
+    //         {
+    //           label: "Level two 3-1",
+    //           id: "Level two 3-1",
+    //           children: [
+    //             {
+    //               label: "Level three 3-1-1",
+    //               id: "Level three 3-1-1",
+    //             },
+    //           ],
+    //         },
+    //         {
+    //           label: "Level two 3-2",
+    //           id: "Level two 3-2",
+    //           children: [
+    //             {
+    //               label: "Level three 3-2-1",
+    //               id: "Level three 3-2-1",
+    //             },
+    //           ],
+    //         },
+    //       ],
+    //     },
+    //   ]
+    // },
+    // {
+    //   name: 'treeItem2',
+    //   type: 'tree',
+    //   title: '树状选择2',
+    //   value: '',
+    //   show: true,
+    //   level: 'special',
+    //   label: '',
+    //   option: 'treeItem2'
+    // },
 
 
-    {
-      name: 'daterangeItem',
-      type: 'daterange',
-      title: '日期输入',
-      value: [],
-      show: true,
-      level: 'special',
-      startName: 'startName',
-      startValue: '',
-      endName: 'endName',
-      endValue: '',
-      width: 500
-    },
+    // {
+    //   name: 'daterangeItem',
+    //   type: 'daterange',
+    //   title: '日期输入',
+    //   value: [],
+    //   show: true,
+    //   level: 'special',
+    //   startName: 'startName',
+    //   startValue: '',
+    //   endName: 'endName',
+    //   endValue: '',
+    //   width: 500
+    // },
 
   ]
 }
-
-export default data
+export default factory(data)

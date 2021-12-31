@@ -1,4 +1,5 @@
 import { ElNotification } from "element-plus";
+import { gate } from "./factory";
 /**
  ** 成功提示语
  * @param msg
@@ -62,4 +63,8 @@ export const integrationSelectData = (arr: IntegrationDataState[]): IntegrationD
     }
     return acc
   }, {})
+}
+
+export const factory = (config: any) => {
+  return gate(config)
 }

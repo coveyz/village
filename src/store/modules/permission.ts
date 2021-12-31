@@ -47,7 +47,6 @@ const mutations = {
 
 const actions = {
   generateRoutes({ commit }: any, permissionList: string[]) {
-    console.log('generateRoutes=>')
     return new Promise((resolve) => {
       const accessRoutes = filterAsyncRoutes(asyncRoutes, permissionList);
       commit("SET_ROUTES", accessRoutes);

@@ -45,7 +45,6 @@ router.beforeEach(
               permission_list
             );
 
-            console.log('accessRoutes???', accessRoutes)
             accessRoutes.forEach((route: RouteRecordRaw) => {
               router.addRoute(route);
             });
