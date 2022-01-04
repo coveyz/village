@@ -95,7 +95,7 @@ export default defineComponent({
       });
     },
     getConfigItem(type: string) {
-      return this.configData["search"].filter((item) => {
+      return this.configData["search"].filter((item:any) => {
         return item.type === type;
       });
     },

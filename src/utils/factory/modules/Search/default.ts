@@ -1,3 +1,8 @@
+type SelectOptionState = {
+  label: string,
+  value: string,
+  disabled?: boolean
+}
 type templateState = {
   init: {
     name: string,
@@ -13,6 +18,26 @@ type templateState = {
   input: {
     value: string,
     maxlength: number
+  },
+  select: {
+    value: string
+    option: string | Array<SelectOptionState>
+    isEvent: false
+  },
+  date: {
+    value: string
+  },
+  daterange: {
+    value: Array<string>
+    startName: string
+    startValue: string
+    endName: string
+    endValue: string
+  },
+  tree: {
+    value: string,
+    label: string
+    option: Array<SelectOptionState & { children: Array<SelectOptionState> }>
   }
 }
 
@@ -29,6 +54,26 @@ const template: SearchTemplateState = {
   input: {
     value: '',
     maxlength: 20
+  },
+  select: {
+    value: '',
+    option: [],
+    isEvent: false
+  },
+  date: {
+    value: ''
+  },
+  daterange: {
+    value: [],
+    startName: '',
+    startValue: '',
+    endName: '',
+    endValue: '',
+  },
+  tree: {
+    value: '',
+    label: '',
+    option: []
   }
 }
 
