@@ -36,7 +36,32 @@
                  :item="item"
                  @selectTreeInfo="selectTreeInfo" />
     </el-form-item>
+    <!-- 🐒  操作 🐒 -->
+    <div class="">
+
+      <el-form-item>
+        <el-button size="small"
+                   type="primary"
+                   @click="manipulation('query')">
+          查询
+        </el-button>
+        <el-button size="small"
+                   type="primary"
+                   @click="manipulation('reset')">
+          重置
+        </el-button>
+        <el-button size="small"
+                   v-for="(option,index) in searchOptionsArr"
+                   :type="option.type"
+                   :key="index"
+                   @click="manipulation(option.name,option)">
+          {{option.title}}
+        </el-button>
+      </el-form-item>
+    </div>
+
   </el-form>
+  {{searchOptionsArr}}
 </template>
 
 <script lang="ts">
@@ -57,7 +82,7 @@ export default defineComponent({
   components: { InputItem, SelectItem, DateItem, DaterangeItem, TreeItem },
   props: {
     config: {
-      type: Object as PropType<{ search: any[] }>, //todo
+      type: Object as PropType<{ search: any[]; searchOptions: any[] }>, //todo
       required: true,
     },
     searchOptions: {
@@ -69,7 +94,8 @@ export default defineComponent({
   },
   data() {
     return {
-      searchArr: [] as any[], //todo
+      searchArr: [] as any[],
+      searchOptionsArr: [] as any[],
     };
   },
   created() {
@@ -84,17 +110,24 @@ export default defineComponent({
         const element = arr[index] as any; //todo
         this.searchArr.push(element);
       }
+      const options = this.config.searchOptions;
+      console.log("op=>", this.config);
+      if (options && options.length) {
+        for (let index = 0; index < options.length; index++) {
+          const option = options[index];
+          this.searchOptionsArr.push(option);
+        }
+      }
     },
     //* 更多
-    moreQueryItem(item: any) {
+    moreQueryItem(config: any) {
       this.searchArr = this.searchArr.map((item) => {
         if (item.level === "special") {
           item.show = !item.show;
         }
         return item;
       });
-
-      item.title = item.title === "显示" ? "隐藏" : "显示";
+      config.title = config.title === "更多" ? "隐藏" : "更多";
     },
     selectEventCollection(info: any) {
       console.log("selectEventCollection-info=>", info);
@@ -110,6 +143,37 @@ export default defineComponent({
       const { data, config } = info;
       config.value = data.id || "";
       config.label = data.label || "";
+    },
+    manipulation(type: string, config?: any) {
+      switch (type) {
+        case "query":
+          this.getUser();
+          break;
+        case "reset":
+          this.reset();
+          break;
+        case "more":
+          this.moreQueryItem(config);
+          break;
+        default:
+          break;
+      }
+    },
+    getUser() {
+      this.$emit("getUser", { type: "search" });
+    },
+    reset() {
+      this.searchArr = this.searchArr.map((item: any) => {
+        if (item.type === "tree") {
+          item["label"] = "";
+        } else if (item.type === "daterange") {
+          item["startValue"] = "";
+          item["endValue"] = "";
+        }
+        item["value"] = Array.isArray(item["value"]) ? [] : "";
+        return item;
+      });
+      this.$emit("reset");
     },
   },
 });

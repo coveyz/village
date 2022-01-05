@@ -4,7 +4,8 @@
     <br />
 
     <search-bar :config="configData"
-                :searchOptions="searchOptions" />
+                :searchOptions="searchOptions"
+                @getUser="getUser" />
 
     <!-- 配置文件信息 -->
     <div class="configItemStyle"
@@ -95,9 +96,13 @@ export default defineComponent({
       });
     },
     getConfigItem(type: string) {
-      return this.configData["search"].filter((item:any) => {
+      return this.configData["search"].filter((item: any) => {
         return item.type === type;
       });
+    },
+    getUser(info: { type: string }) {
+      const { type } = info;
+      console.log("getUser=>", type);
     },
   },
 });

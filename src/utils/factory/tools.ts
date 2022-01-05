@@ -8,8 +8,11 @@ const itemTypeErrorTips = (key: string, valType: string, type: string) => {
  */
 export const readyUnpacking = (val: any, key: string, type = "Array"): boolean => {
   const valType = Object.prototype.toString.call(val).slice(8, -1)
-  if (valType !== type) return itemTypeErrorTips(key, valType, type)
-  return val === '' || val.length === 0
+  if (valType !== type) {
+    itemTypeErrorTips(key, valType, type)
+    return false
+  }
+  return !(val === '' || val.length === 0)
 }
 
 /**

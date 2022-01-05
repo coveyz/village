@@ -38,7 +38,7 @@ type templateState = {
     value: string,
     label: string
     option: Array<SelectOptionState & { children: Array<SelectOptionState> }>
-  }
+  },
 }
 
 type SearchTemplateState = Omit<templateState, 'init'>
@@ -74,7 +74,7 @@ const template: SearchTemplateState = {
     value: '',
     label: '',
     option: []
-  }
+  },
 }
 
 

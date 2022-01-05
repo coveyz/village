@@ -24,6 +24,7 @@ export const gate = (config: any, type?: string) => {
 
 //* 操作车间
 const workShop = (config: any) => {
+  console.log('before=.', config)
   const item = assemblyLine(config)
   console.log('workshop=>item=>', item)
   const product = mergeData(item)
@@ -35,8 +36,14 @@ const assemblyLine = (config: any) => {
   for (const key in config) {
     switch (key) {
       case 'search':
-        product[key] = !readyUnpacking(config[key], key) ? SearchGate(config[key]) : []
+        product[key] = readyUnpacking(config[key], key) ? SearchGate(config[key]) : []
         break;
+      case 'searchOptions':
+        product[key] = readyUnpacking(config[key], key) ? config[key] : []
+        break;
+      case 'index':
+        product[key] = readyUnpacking(config[key], key, 'Number') ? config[key] : 1
+        break
       default:
         break;
     }
@@ -46,11 +53,13 @@ const assemblyLine = (config: any) => {
 
 //* 合并配置文件 合并 用户没有设置的文件
 const mergeData = (config: any) => {
+  console.log('befor=.', config)
   for (const key in defaultConfig) {
     if (!(key in config)) {
       config[key] = defaultConfig[key].value
     }
   }
+  console.log('config=<', config)
   return config
 }
 
