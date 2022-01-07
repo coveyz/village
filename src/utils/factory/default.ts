@@ -1,4 +1,4 @@
-type DefaultConfigKey = "search" | 'searchOptions' | "options" | "table" | 'tableOptions' | "select" | "url" | "index"
+type DefaultConfigKey = "search" | "operations" | "table" | 'tableOptions' | "select" | "url" | "index"
 type DefaultConfigValue = {
   value: any[] | number | string | boolean
   keys?: string[]
@@ -11,11 +11,10 @@ export const defaultConfig: DefaultConfigState = {
     keys: ['name', 'type'],
     value: []
   },
-  searchOptions: {
-    keys: ['name', 'type'],
-    value: []
+  operations: {
+    value: [],
+    keys: ['buttonType',], //* buttonType === 'dropdownButton' 父级可以没有name
   },
-  options: { value: [] },
   table: { value: [] },
   tableOptions: { value: [] },
   select: { value: true },
