@@ -5,8 +5,14 @@
 
     <search-bar :config="configData"
                 :searchOptions="searchOptions"
-                @getUser="getUser" />
-
+                @getUser="getUser">
+      <template v-slot:options>
+        <el-button type="primary"
+                   @click="testSlotsOptions">xxx</el-button>
+        <el-button type="warning"
+                   @click="testSlotsOptions">xxx</el-button>
+      </template>
+    </search-bar>
     <!-- 配置文件信息 -->
     <div class="configItemStyle"
          v-for="(info,index) in configInfo"
@@ -103,6 +109,9 @@ export default defineComponent({
     getUser(info: { type: string }) {
       const { type } = info;
       console.log("getUser=>", type);
+    },
+    testSlotsOptions() {
+      console.log("testSlotsOptions");
     },
   },
 });

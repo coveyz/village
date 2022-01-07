@@ -38,30 +38,24 @@
     </el-form-item>
     <!-- 🐒  操作 🐒 -->
     <div class="">
-
       <el-form-item>
-        <el-button size="small"
-                   type="primary"
+        <el-button type="primary"
                    @click="manipulation('query')">
           查询
         </el-button>
-        <el-button size="small"
-                   type="primary"
+        <el-button type="danger"
                    @click="manipulation('reset')">
           重置
         </el-button>
-        <el-button size="small"
-                   v-for="(option,index) in searchOptionsArr"
-                   :type="option.type"
-                   :key="index"
-                   @click="manipulation(option.name,option)">
-          {{option.title}}
+        <el-button type="primary"
+                   v-if="showMoreOption"
+                   @click="manipulation('more')">
+          {{moreOptionText}}
         </el-button>
+        <slot name="options" />
       </el-form-item>
     </div>
-
   </el-form>
-  {{searchOptionsArr}}
 </template>
 
 <script lang="ts">
@@ -82,7 +76,7 @@ export default defineComponent({
   components: { InputItem, SelectItem, DateItem, DaterangeItem, TreeItem },
   props: {
     config: {
-      type: Object as PropType<{ search: any[]; searchOptions: any[] }>, //todo
+      type: Object as PropType<{ search: any[] }>, //todo
       required: true,
     },
     searchOptions: {
@@ -95,8 +89,15 @@ export default defineComponent({
   data() {
     return {
       searchArr: [] as any[],
-      searchOptionsArr: [] as any[],
+      moreOptionText: "更多",
     };
+  },
+  computed: {
+    showMoreOption() {
+      return this.searchArr.some((item: any) => {
+        return !item.show || item.level;
+      });
+    },
   },
   created() {
     this.config.search && this.getInit();
@@ -110,14 +111,6 @@ export default defineComponent({
         const element = arr[index] as any; //todo
         this.searchArr.push(element);
       }
-      const options = this.config.searchOptions;
-      console.log("op=>", this.config);
-      if (options && options.length) {
-        for (let index = 0; index < options.length; index++) {
-          const option = options[index];
-          this.searchOptionsArr.push(option);
-        }
-      }
     },
     //* 更多
     moreQueryItem(config: any) {
@@ -127,7 +120,7 @@ export default defineComponent({
         }
         return item;
       });
-      config.title = config.title === "更多" ? "隐藏" : "更多";
+      this.moreOptionText = this.moreOptionText === "更多" ? "隐藏" : "更多";
     },
     selectEventCollection(info: any) {
       console.log("selectEventCollection-info=>", info);

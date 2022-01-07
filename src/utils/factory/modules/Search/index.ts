@@ -19,12 +19,11 @@ const judge = (data: any, index: number): boolean => {
     }
     if (data[key] === '') {
       SearchItemErrorItps(index, `${key}字段不得为空`)
-      flage = false
+      // flage = false
     }
   }
   return flage
 }
-
 /**
  ** Search 类型 入口
  */

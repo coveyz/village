@@ -187,12 +187,5 @@ const data = {
     // },
   ],
   index: 33,
-  searchOptions: [
-    {
-      name: 'more',
-      title: '更多',
-      type: 'primary'
-    }
-  ],
 }
 export default factory(data)
