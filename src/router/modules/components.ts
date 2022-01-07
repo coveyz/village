@@ -40,6 +40,12 @@ const componentsRoutes: RouteRecordRaw = {
       component: () => import('@/views/components-demo/search/index.vue'),
       name: 'Search',
       meta: { title: '搜索框', limit: 'components', icon: '' }
+    },
+    {
+      path: 'operations',
+      component: () => import('@/views/components-demo/operations/index.vue'),
+      name: 'Operation',
+      meta: { title: '操作组', limit: 'components', icon: '' }
     }
   ],
 };

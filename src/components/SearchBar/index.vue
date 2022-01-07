@@ -108,7 +108,7 @@ export default defineComponent({
       this.searchArr = [];
       const arr = this.config.search;
       for (let index = 0; index < arr.length; index++) {
-        const element = arr[index] as any; //todo
+        const element = arr[index]; //todo
         this.searchArr.push(element);
       }
     },
