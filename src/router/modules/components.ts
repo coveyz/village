@@ -46,7 +46,14 @@ const componentsRoutes: RouteRecordRaw = {
       component: () => import('@/views/components-demo/operations/index.vue'),
       name: 'Operation',
       meta: { title: '操作组', limit: 'components', icon: '' }
+    },
+    {
+      path: 'editor',
+      component: () => import('@/views/components-demo/editor/new.vue'),
+      name: 'Editor',
+      meta: { title: 'markdown', limit: 'components', icon: '' }
     }
+
   ],
 };
 
