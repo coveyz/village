@@ -66,7 +66,7 @@ export default defineComponent({
     },
     backToTop() {
       if (this.isMoving) return;
-      const start = window.pageXOffset;
+      const start = window.pageYOffset;
       let i = 0;
       this.isMoving = true;
       const interval = setInterval(() => {
