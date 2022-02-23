@@ -48,12 +48,11 @@ const componentsRoutes: RouteRecordRaw = {
       meta: { title: '操作组', limit: 'components', icon: '' }
     },
     {
-      path: 'editor',
-      component: () => import('@/views/components-demo/editor/new.vue'),
+      path: 'back-to-top',
+      component: () => import('@/views/components-demo/back-to-top/index.vue'),
       name: 'Editor',
-      meta: { title: 'markdown', limit: 'components', icon: '' }
+      meta: { title: 'back-to-top', limit: 'components', icon: '' }
     }
-
   ],
 };
 
