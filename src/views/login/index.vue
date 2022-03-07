@@ -1,11 +1,9 @@
 <template>
-  <el-form
-    :model="formMoal"
-    :rules="rules"
-    label-position="left"
-    ref="formRef"
-    class="user-form"
-  >
+  <el-form :model="formMoal"
+           :rules="rules"
+           label-position="left"
+           ref="formRef"
+           class="user-form">
     <div class="title-container">
       <h3 class="title">Login Form</h3>
     </div>
@@ -13,11 +11,13 @@
       <span class="svg-container">
         <svg-icon icon-class="email" />
       </span>
-      <el-input ref="email" v-model="formMoal.email"></el-input>
+      <el-input ref="email"
+                v-model="formMoal.email"></el-input>
     </el-form-item>
 
     <!-- 图形验证码 -->
-    <el-form-item prop="captcha" class="capcha-container">
+    <el-form-item prop="captcha"
+                  class="capcha-container">
       <div style="display: flex">
         <span class="svg-container">
           <svg-icon icon-class="captcha" />
@@ -25,11 +25,13 @@
         <el-input v-model="formMoal.captcha"></el-input>
       </div>
       <div class="captcha">
-        <img :src="code.captcha" @click="getCaptcha" />
+        <img :src="code.captcha"
+             @click="getCaptcha" />
       </div>
     </el-form-item>
 
-    <el-form-item prop="emailcode" class="capcha-container">
+    <el-form-item prop="emailcode"
+                  class="capcha-container">
       <div style="display: flex">
         <span class="svg-container">
           <svg-icon icon-class="email" />
@@ -37,7 +39,8 @@
         <el-input v-model="formMoal.emailcode"></el-input>
       </div>
       <div class="captcha">
-        <el-button type="primary" @click="sendEmailCode">{{
+        <el-button type="primary"
+                   @click="sendEmailCode">{{
           sendText
         }}</el-button>
       </div>
@@ -47,28 +50,25 @@
       <span class="svg-container">
         <svg-icon icon-class="password" />
       </span>
-      <el-input
-        :type="passwordType"
-        ref="password"
-        v-model="formMoal.passwd"
-      ></el-input>
-      <span class="svg-container" style="padding: 6px 15px 6px 5px">
-        <svg-icon
-          @click="switchPasswordType"
-          :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
-        />
+      <el-input :type="passwordType"
+                ref="password"
+                v-model="formMoal.passwd"></el-input>
+      <span class="svg-container"
+            style="padding: 6px 15px 6px 5px">
+        <svg-icon @click="switchPasswordType"
+                  :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
       </span>
     </el-form-item>
-    <el-button
-      :loading="loading"
-      type="primary"
-      style="width: 100%; margin-bottom: 30px"
-      @click.prevent="handleLogin"
-      >登录</el-button
-    >
+    <el-button :loading="loading"
+               type="primary"
+               style="width: 100%; margin-bottom: 30px"
+               @click.prevent="handleLogin">登录</el-button>
 
-    <div class="" style="position: relative; height: 40px">
-      <el-button class="thirdparty-button" @click="register" type="primary">
+    <div class=""
+         style="position: relative; height: 40px">
+      <el-button class="thirdparty-button"
+                 @click="register"
+                 type="primary">
         注册
       </el-button>
     </div>
@@ -111,6 +111,15 @@ export default defineComponent({
       }
       return `${this.send.timer}s发送`;
     },
+  },
+  beforeCreate() {
+    console.log("beforeCreate=>", this);
+  },
+  created() {
+    console.log("created=>", this);
+  },
+  unmounted() {
+    console.log("destroyed", this);
   },
   methods: {
     async sendEmailCode() {

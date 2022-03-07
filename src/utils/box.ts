@@ -66,5 +66,6 @@ export const integrationSelectData = (arr: IntegrationDataState[]): IntegrationD
 }
 
 export const factory = (config: any) => {
-  return gate(config)
+  // return gate(config)
+  return config
 }

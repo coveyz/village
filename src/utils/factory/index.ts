@@ -34,19 +34,19 @@ const workShop = (config: any) => {
 const assemblyLine = (config: any) => {
   const product = {}
   for (const key in config) {
-    switch (key) {
-      case 'search':
-        product[key] = readyUnpacking(config[key], key) ? SearchGate(config[key]) : []
-        break;
-      case 'operations':
-        product[key] = readyUnpacking(config[key], key) ? OperationGroupGate(config[key]) : []
-        break
-      case 'index':
-        product[key] = readyUnpacking(config[key], key, 'Number') ? config[key] : 1
-        break
-      default:
-        break;
-    }
+    // switch (key) {
+    //   case 'search':
+    //     product[key] = readyUnpacking(config[key], key) ? SearchGate(config[key]) : []
+    //     break;
+    //   case 'operations':
+    //     product[key] = readyUnpacking(config[key], key) ? OperationGroupGate(config[key]) : []
+    //     break
+    //   case 'index':
+    //     product[key] = readyUnpacking(config[key], key, 'Number') ? config[key] : 1
+    //     break
+    //   default:
+    //     break;
+    // }
   }
   return product
 }
@@ -55,7 +55,7 @@ const assemblyLine = (config: any) => {
 const mergeData = (config: any) => {
   for (const key in defaultConfig) {
     if (!(key in config)) {
-      config[key] = defaultConfig[key].value
+      // config[key] = defaultConfig[key].value
     }
   }
   return config

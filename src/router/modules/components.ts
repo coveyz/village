@@ -52,6 +52,12 @@ const componentsRoutes: RouteRecordRaw = {
       component: () => import('@/views/components-demo/back-to-top/index.vue'),
       name: 'Editor',
       meta: { title: 'back-to-top', limit: 'components', icon: '' }
+    },
+    {
+      path: 'clipboard',
+      component: () => import('@/views/components-demo/clipboard/index.vue'),
+      name: 'clipboard',
+      meta: { title: '粘贴板', limit: 'components', icon: '' }
     }
   ],
 };

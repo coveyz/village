@@ -20,3 +20,5 @@ export const Captcha = () => {
 
   return { ...toRefs(state), getCaptcha };
 };
+
+
