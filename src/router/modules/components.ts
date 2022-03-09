@@ -58,6 +58,12 @@ const componentsRoutes: RouteRecordRaw = {
       component: () => import('@/views/components-demo/clipboard/index.vue'),
       name: 'clipboard',
       meta: { title: '粘贴板', limit: 'components', icon: '' }
+    },
+    {
+      path: 'drag-kanban',
+      component: () => import('@/views/components-demo/drag-kanban/index.vue'),
+      name: 'kanban',
+      meta: {title: '拖拽看板',limit: 'components',icon: ''}
     }
   ],
 };
