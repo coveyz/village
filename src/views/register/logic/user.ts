@@ -43,9 +43,8 @@ export const RegisterUser = () => {
       ],
     },
   });
-
   const submit = (): void => {
-    (state.loginFormRef as any).validate(async (valid: boolean) => {
+    (state.loginFormRef as any).validate(async(valid: boolean) => {
       if (valid) {
         state.loading = true;
         const requrstData: RegisterData = Object.assign({}, state.model);

@@ -50,6 +50,23 @@ export const constantsRoutes: Array<RouteRecordRaw> = [
 
 //* 异步 路由
 export const asyncRoutes: Array<RouteRecordRaw> = [
+  {
+    path: '/guide',
+    component: BaseLayout,
+    redirect: '/guide/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/guide/index.vue'),
+        name: 'Guide',
+        meta: {
+          title: '指导',
+          icon: 'guide',
+          limit: "components",
+        }
+      }
+    ]
+  },
   componentsRoutes,
   {
     path: '/404',
