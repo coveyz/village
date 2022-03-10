@@ -20,6 +20,12 @@ module.exports = {
 		},
 	},
 
+	configureWebpack: {
+		resolveLoader: {
+			modules: ['./node_modules', './myloader'],
+		},
+	},
+
 	pluginOptions: {
 		'style-resources-loader': {
 			preProcessor: 'scss',
@@ -39,5 +45,6 @@ module.exports = {
 				symbolId: 'icon-[name]',
 			})
 			.end();
+		config.module.rule('js').test(/\.js$/).use('dropConsole').loader('dropConsole').end();
 	},
 };
