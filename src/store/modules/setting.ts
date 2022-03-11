@@ -15,17 +15,30 @@ const state: SettingState = {
   sidebarLogo: sidebarLogo,
 }
 
-const mutations = {
+type defaultKey = "theme" | "showSetting" | "tagsView" | 'fixedHeader' | "sidebarLogo"
 
+
+const mutations = {
+  //todo state 类型 有问题
+  CHANGE_SETTING: (state: any, data: { key: defaultKey, value: string | boolean }) => {
+    const { key, value } = data
+    if (state.hasOwnProperty(key)) {
+      state[key] = value
+    }
+  }
 }
 
 const actions = {
-
-
+  changeSetting({ commit }: any, data: { key: string, value: string | boolean }) {
+    commit('CHANGE_SETTING', data)
+  }
 }
 
+
+
+
 export default {
-  namespace: true,
+  namespaced: true,
   state,
   mutations,
   actions

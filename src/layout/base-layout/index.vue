@@ -1,26 +1,33 @@
 <template>
   <div :class="classObj"
        class="app-wrapper">
-    <sidebar class="sidebar-container" />
+    <Sidebar class="sidebar-container" />
     <div class="main-container"
          :class="{hasTagsView: needTagsView}">
       <div :class="{'fixed-header': fixedHeader}">
-        <navbar />
-        <tag-view v-if="needTagsView" />
+        <Navbar />
+        <TagView v-if="needTagsView" />
       </div>
-      <app-main />
+      <AppMain />
     </div>
+    <RightPanel>
+      <Setting />
+    </RightPanel>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from "vue";
-import { AppMain, Sidebar, Navbar, TagView } from "./components";
+import { AppMain, Sidebar, Navbar, TagView, Setting } from "./components";
+import { RightPanel } from "@/components";
 import { resize } from "./logic/resize";
+import { useStore } from "@/store";
+
 export default defineComponent({
-  components: { AppMain, Sidebar, Navbar, TagView },
+  components: { AppMain, Sidebar, Navbar, TagView, RightPanel, Setting },
   setup() {
     const { device, sidebar } = resize();
+    const store = useStore();
     const classObj = computed(() => {
       return {
         hideSidebar: !sidebar.value.opened,
@@ -29,8 +36,9 @@ export default defineComponent({
         mobile: device.value === "mobile",
       };
     });
-    const needTagsView = computed(() => true);
-    const fixedHeader = computed(() => false);
+
+    const needTagsView = computed(() => store.state.setting.tagsView);
+    const fixedHeader = computed(() => store.state.setting.fixedHeader);
 
     return {
       classObj,
@@ -53,5 +61,13 @@ export default defineComponent({
   position: relative;
   height: 100%;
   width: 100%;
+}
+.fixed-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  width: calc(100% - #{$sideBarWidth});
+  transition: width 0.28s;
 }
 </style>

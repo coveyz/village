@@ -14,12 +14,13 @@ const modules = modulesFiles.keys().reduce((modules: any, modulePath: any) => {
   return modules;
 }, {});
 
+console.log('modules=>', modules)
 
 export interface RootState {
-  user: UserState;
-  permission: PermissionState;
-  setting: SettingState;
-  app: AppState;
+  user: UserState
+  permission: PermissionState
+  setting: SettingState
+  app: AppState
 }
 
 export type Store = UserStore<Pick<RootState, "user">> &
