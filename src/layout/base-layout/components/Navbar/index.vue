@@ -1,18 +1,20 @@
 <template>
   <div class="navbar">
-    <hamburger id="hamburger-container"
+    <Hamburger id="hamburger-container"
                class="hamburger-container"
                @toggle-click="toggleSideBar" />
+    <Breadcrumb class="breadcrumb-container"
+                id="breadcrumb-container" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Hamburger } from "@/components";
+import { Hamburger, Breadcrumb } from "@/components";
 import { useStore } from "@/store";
 
 export default defineComponent({
-  components: { Hamburger },
+  components: { Hamburger, Breadcrumb },
   setup() {
     const store = useStore();
     const toggleSideBar = () => {
@@ -45,6 +47,9 @@ export default defineComponent({
     &:hover {
       background: rgba(0, 0, 0, 0.025);
     }
+  }
+  .breadcrumb-container {
+    float: left;
   }
 }
 </style>

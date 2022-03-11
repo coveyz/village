@@ -10,6 +10,7 @@ const componentsRoutes: RouteRecordRaw = {
     limit: "components",
     icon: "tools",
   },
+  redirect: 'noredirect',
   children: [
     {
       path: "file",
@@ -21,7 +22,7 @@ const componentsRoutes: RouteRecordRaw = {
       path: 'process',
       component: () => import('@/views/components-demo/process/index.vue'),
       name: 'Process',
-      meta: { title: '流程图', limit: 'components', icon: '' }
+      meta: { title: '流程图', limit: 'components', icon: '', }
     },
     {
       path: 'record',
@@ -63,7 +64,7 @@ const componentsRoutes: RouteRecordRaw = {
       path: 'drag-kanban',
       component: () => import('@/views/components-demo/drag-kanban/index.vue'),
       name: 'kanban',
-      meta: {title: '拖拽看板',limit: 'components',icon: ''}
+      meta: { title: '拖拽看板', limit: 'components', icon: '' }
     }
   ],
 };

@@ -8,6 +8,14 @@ const steps = [
     }
   },
   {
+    element: '#breadcrumb-container',
+    popover: {
+      title: 'Breadcrumb',
+      description: 'Open && Close sidebar',
+      position: 'bottom'
+    }
+  },
+  {
     element: '#card',
     popover: {
       title: 'card',

@@ -18,6 +18,7 @@ export const constantsRoutes: Array<RouteRecordRaw> = [
     redirect: "/user/login",
     meta: {
       hidden: true,
+      title: '组件'
     },
     children: [
       {
@@ -39,6 +40,7 @@ export const constantsRoutes: Array<RouteRecordRaw> = [
     children: [{
       path: '/dashboard',
       component: () => import('@/views/dashboard/index.vue'),
+      name: 'dashboard',
       meta: {
         title: '导航',
         icon: 'dashboard',

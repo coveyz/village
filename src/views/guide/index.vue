@@ -7,7 +7,11 @@
       card
 
     </div>
-
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <el-button @click.prevent.stop="guide"
                type="primary">
       Show Guide
