@@ -3,7 +3,12 @@ import App from "./App.vue";
 // import "./registerServiceWorker";
 
 import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
+// import "element-plus/dist/index.css";
+// import 'element-plus/dist/index.css'
+import 'element-plus/lib/theme-chalk/index.css'
+// import 'element-plus/lib/theme-chalk/index.css'
+import "@/styles/element-variables.scss"
+
 
 import router from "@/router";
 import { store } from "@/store";

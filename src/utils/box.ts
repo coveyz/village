@@ -1,5 +1,5 @@
-import { ElNotification } from "element-plus";
-import { gate } from "./factory";
+import { ElNotification, ElLoading } from "element-plus";
+// import { gate } from "./factory";
 /**
  ** 成功提示语
  * @param msg
@@ -68,4 +68,11 @@ export const integrationSelectData = (arr: IntegrationDataState[]): IntegrationD
 export const factory = (config: any) => {
   // return gate(config)
   return config
+}
+
+export const loading = (text: string) => {
+  const loadingInstance = ElLoading.service({ text: text })
+  return loadingInstance
+
+  return loading
 }

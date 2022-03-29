@@ -2,13 +2,14 @@ import { Module, Store as VuexStore } from 'vuex'
 import { RootState } from '@/store'
 import { SettingState } from '@/store/type'
 import defaultSetting from '@/setting'
-
+import variables from '@/styles/element-variables.scss'
 const { showSetting, tagsView, fixedHeader, sidebarLogo } = defaultSetting
+
 
 export type SettingStore<S = SettingState> = Omit<VuexStore<S>, ''>
 
 const state: SettingState = {
-  theme: '', //todo
+  theme: variables.theme, 
   showSetting: showSetting,
   tagsView: tagsView,
   fixedHeader: fixedHeader,

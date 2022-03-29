@@ -1,6 +1,11 @@
 <template>
   <div class="drawer-container">
     <div class="drawer-item">
+      <span>Theme Color</span>
+      <ThemePicker style="float: right;height: 26px;margin: -3px 8px 0 0;"
+                   @change="themeChange" />
+    </div>
+    <div class="drawer-item">
       <span>Open Tags-View</span>
       <el-switch v-model="tagsView"
                  class="drawer-switch" />
@@ -16,9 +21,11 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useStore } from "@/store";
+import { ThemePicker } from "@/components";
 
 export default defineComponent({
-  setup() {
+  components: { ThemePicker },
+  setup () {
     const store = useStore();
     const tagsView = computed({
       get: () => {
@@ -43,9 +50,18 @@ export default defineComponent({
       },
     });
 
+    const themeChange = (val: string) => {
+      
+      store.dispatch("setting/changeSetting", {
+        key: "theme",
+        value: val,
+      });
+    };
+
     return {
       tagsView,
       fixedHeader,
+      themeChange,
     };
   },
 });
@@ -53,7 +69,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .drawer-container {
-  // padding: 0 24px;
+  padding: 0 24px;
   font-size: 15px;
   line-height: 1.5;
   word-wrap: break-word;
