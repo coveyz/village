@@ -29,13 +29,11 @@
           <Item :index="index"
                 :item="item"
                 @measureText="measureText">
-            <div v-if="enableImag && (item &&item.src)">
             <template v-slot:image>
               <img :src="item.src"
                    alt=""
                    @load="() => measure(index)" />
             </template>
-            </div>
           </Item>
         </template>
       </template> -->
@@ -66,45 +64,17 @@ export default defineComponent({
       viewCount: 10, //* 渲染数量
       startIndex: 0, //* 开始的 index
       startOffset: 0, //* 偏移量
+      phantomHeight: 0,
+      positions: [] as positionState[],
     };
   },
   mounted() {
-    // this.getInitPosition();
-    // this.getInitPhantomHeight();
+    this.getInitPosition();
+    this.getInitPhantomHeight();
     console.log("🎎", this.positions);
     (window as any).positions = this.positions; //* 可能没用
   },
   computed: {
-    positions: {
-      //* 记录列表项的位置信息
-      get(): positionState[] {
-        return this.list.map((item, index) => {
-          return {
-            index,
-            height: this.defaultItemSize,
-            top: index * this.defaultItemSize,
-            bottom: (index + 1) * this.defaultItemSize,
-          };
-        });
-      },
-      set(): positionState[] {
-        console.log("positions=>set=>");
-        return this.positions;
-      },
-    },
-    //* 列表总高度
-    phantomHeight: {
-      get(): number {
-        return this.positions.reduce((acc, cur) => {
-          acc += cur.height;
-          return acc;
-        }, 0);
-      },
-      set(totalHeight: number): number {
-        console.log("phantomHeight=>set=>");
-        return totalHeight;
-      },
-    },
     //* 结束的index
     endIndex(): number {
       return this.startIndex + this.viewCount;
@@ -113,12 +83,23 @@ export default defineComponent({
       return this.list.slice(this.startIndex, this.endIndex);
     },
   },
-  watch: {
-    positions() {
-      console.log("position=>change=>");
-    },
-  },
   methods: {
+    getInitPosition() {
+      this.positions = this.list.map((item, index) => {
+        return {
+          index,
+          height: this.defaultItemSize,
+          top: index * this.defaultItemSize,
+          bottom: (index + 1) * this.defaultItemSize,
+        };
+      });
+    },
+    getInitPhantomHeight() {
+      this.phantomHeight = this.positions.reduce((acc, cur) => {
+        acc += cur.height;
+        return acc;
+      }, 0);
+    },
     //* 获取 startIndex 二分查找
     getStartIndex(scrollTop: number) {
       let item = this.positions.find((item) => item && item.bottom > scrollTop);
@@ -142,6 +123,7 @@ export default defineComponent({
       this.startIndex = startIndex;
       const startOffset = this.getStartOffset(startIndex);
       this.startOffset = startOffset;
+
       // console.log(">?", startIndex, scrollTop,this.positions);
       // console.log(">?", startIndex, scrollTop, startOffset);
     },
@@ -176,6 +158,17 @@ export default defineComponent({
       });
 
       // console.log("pos=>", this.positions);
+      this.changePhantomHeight();
+    },
+    changePhantomHeight() {
+      if (this.positions && this.positions.length) {
+        const totalHeight = this.positions.reduce((total, item) => {
+          total = total + item.height;
+          return total;
+        }, 0);
+        console.log("totalHeight=>", totalHeight);
+        this.phantomHeight = totalHeight;
+      }
     },
     measureText(index: number, height: number) {
       this.measure(index, height);

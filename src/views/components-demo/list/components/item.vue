@@ -35,6 +35,7 @@ export default defineComponent({
   },
   mounted() {
     this.measureItem(this.index);
+    console.log('????')
   },
   methods: {
     measureItem(index?: number) {
