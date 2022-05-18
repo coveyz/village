@@ -55,17 +55,23 @@ const componentsRoutes: RouteRecordRaw = {
       meta: { title: 'back-to-top', limit: 'components', icon: '' }
     },
     {
+      path: 'drag-kanban',
+      component: () => import('@/views/components-demo/drag-kanban/index.vue'),
+      name: 'kanban',
+      meta: { title: '拖拽看板', limit: 'components', icon: '' }
+    },
+    {
       path: 'clipboard',
       component: () => import('@/views/components-demo/clipboard/index.vue'),
       name: 'clipboard',
       meta: { title: '粘贴板', limit: 'components', icon: '' }
     },
     {
-      path: 'drag-kanban',
-      component: () => import('@/views/components-demo/drag-kanban/index.vue'),
-      name: 'kanban',
-      meta: { title: '拖拽看板', limit: 'components', icon: '' }
-    }
+      path: 'list',
+      component: () => import('@/views/components-demo/list/index.vue'),
+      name: 'list',
+      meta: { title: '列表', limit: 'components', icon: '' }
+    },
   ],
 };
 

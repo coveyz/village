@@ -33,14 +33,15 @@ module.exports = {
 			},
 		],
 		'@typescript-eslint/no-explicit-any': 'off',
-		'space-before-function-paren': [
-			'error',
-			{
-				anonymous: 'always',
-				named: 'always',
-				asyncArrow: 'always',
-			},
-		],
+		// 'space-before-function-paren': [
+		// 	'error',
+		// 	{
+		// 		anonymous: 'always',
+		// 		named: 'always',
+		// 		asyncArrow: 'always',
+		// 	},
+		// ],
+		'space-before-function-paren': 0,
 		'vue/array-bracket-spacing': 'error',
 		'vue/arrow-spacing': 'error',
 		'vue/block-spacing': 'error',

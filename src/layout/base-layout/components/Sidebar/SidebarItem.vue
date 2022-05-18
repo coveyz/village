@@ -5,8 +5,8 @@
       {'first-level': isFirstLevel}
     ]">
     <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
-      <app-link v-if="theOnlyOneChild.meta"
-                :to="resolvePath(theOnlyOneChild.path)">
+      <AppLink v-if="theOnlyOneChild.meta"
+               :to="resolvePath(theOnlyOneChild.path)">
         <el-menu-item :index="resolvePath(theOnlyOneChild.path)"
                       :class="{'submenu-title-noDropdown': !isNest}">
           <svg-icon v-if="theOnlyOneChild.meta.icon"
@@ -17,7 +17,7 @@
             </span>
           </template>
         </el-menu-item>
-      </app-link>
+      </AppLink>
     </template>
     <el-sub-menu v-else
                  :index="resolvePath(item.path)">
@@ -124,7 +124,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" >
-
 </style>
 
 

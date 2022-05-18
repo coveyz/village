@@ -8,7 +8,7 @@
                   :key="item.name"
                   v-show="item.show"
                   :style="{width: item.width ? `${item.width}px` : '300px'}"
-                  :class="{ textSoLong: item.title.length > 6 }"
+                  :class="{textSoLong: item.title.length > 6}"
                   :label="item.title">
       <!-- 🍌 输入 🍌 -->
       <input-item v-if="item.type === 'input'"

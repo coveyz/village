@@ -1,5 +1,5 @@
 <template>
-  <div class="components-container board">
+  <div class="components-container ">
     <Kanban :key="1"
             :list="list1"
             :group="group"
@@ -27,7 +27,7 @@ import { defineComponent } from "vue";
 import { Kanban } from "@/components";
 
 export default defineComponent({
-  name: "DragKanbanDemo",
+  // name: "DragKanbanDemo",
   components: { Kanban },
   data() {
     return {
@@ -53,7 +53,7 @@ export default defineComponent({
 });
 </script>
 
-<style  lang="scss">
+<style  lang="scss" scoped>
 .board {
   width: 1000px;
   margin-left: 20px;

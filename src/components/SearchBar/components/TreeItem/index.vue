@@ -21,9 +21,9 @@ import { defineComponent, PropType } from "vue";
 import { SearchItemOfTree, OptionsState } from "@/components/SearchBar/type";
 
 type TreeItemState = {
-  children: any[];
-  label: string;
-  id: string;
+  children: any[]
+  label: string
+  id: string
 };
 
 export default defineComponent({
