@@ -37,6 +37,9 @@ export default defineComponent({
       })
     );
   },
+  beforeUnmount() {
+    console.log('beforeDestroy')
+  },
 });
 </script>
 

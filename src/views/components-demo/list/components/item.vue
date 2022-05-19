@@ -35,15 +35,25 @@ export default defineComponent({
   },
   mounted() {
     this.measureItem(this.index);
-    console.log('????')
   },
   methods: {
     measureItem(index?: number) {
       const item = this.$refs.element as Element;
-      console.log("xxxx=>", index, item);
+      // console.log("xxxx=>", index, item);
       if (item && item.clientHeight) {
         this.$emit("measureText", index, item.clientHeight);
       }
+
+      // const resizeObserve = new ResizeObserver(() => {
+      //   // const item = this.$refs.element as Element;
+      // console.log("xxxx=>", index, item);
+      //   if (item && item.clientHeight) {
+      //     this.$emit("measureText", index, item.clientHeight);
+      //   }
+      // });
+      // resizeObserve.observe(item);
+
+      // return () => resizeObserve.disconnect();
     },
   },
 });

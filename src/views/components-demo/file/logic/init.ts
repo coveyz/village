@@ -1,7 +1,7 @@
 import { reactive, toRefs } from 'vue'
 
 type initState = {
-  file: File | null,
+  file: File | null
   dragRef: HTMLElement
 }
 

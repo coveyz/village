@@ -59,13 +59,11 @@ export default defineComponent({
       // listArea: null, //* 渲染区域
       // phantom: null, //* 占位区域, 列表总高度
       defaultItemSize: 100,
-      // positions: [] as positionState[], //* 记录列表项的位置信息
-      // phantomHeight: 0, //* 列表总高度
+      phantomHeight: 0, //* 列表总高度
+      positions: [] as positionState[], //* 记录列表项的位置信息
       viewCount: 10, //* 渲染数量
       startIndex: 0, //* 开始的 index
       startOffset: 0, //* 偏移量
-      phantomHeight: 0,
-      positions: [] as positionState[],
     };
   },
   mounted() {
@@ -81,6 +79,11 @@ export default defineComponent({
     },
     vlist() {
       return this.list.slice(this.startIndex, this.endIndex);
+    },
+  },
+  watch: {
+    startOffset(newValue, oldValue) {
+      // console.log("xxxxx=>", newValue);
     },
   },
   methods: {
@@ -123,6 +126,7 @@ export default defineComponent({
       this.startIndex = startIndex;
       const startOffset = this.getStartOffset(startIndex);
       this.startOffset = startOffset;
+      // console.log("startOffset=>", startOffset);
 
       // console.log(">?", startIndex, scrollTop,this.positions);
       // console.log(">?", startIndex, scrollTop, startOffset);
@@ -154,11 +158,11 @@ export default defineComponent({
               this.positions[key].bottom = this.positions[key].bottom - dHeight;
             }
           }
+          this.changePhantomHeight();
         }
       });
 
       // console.log("pos=>", this.positions);
-      this.changePhantomHeight();
     },
     changePhantomHeight() {
       if (this.positions && this.positions.length) {
@@ -166,7 +170,7 @@ export default defineComponent({
           total = total + item.height;
           return total;
         }, 0);
-        console.log("totalHeight=>", totalHeight);
+        // console.log("totalHeight=>", totalHeight);
         this.phantomHeight = totalHeight;
       }
     },

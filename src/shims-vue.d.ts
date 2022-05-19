@@ -6,4 +6,5 @@ declare module '*.vue' {
 }
 declare module 'marked'
 declare module "*.scss";
-declare module 'path-browserify'
+declare module 'path-browserify';
+declare module 'faker';
