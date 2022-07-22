@@ -29,15 +29,16 @@ export default defineComponent({
   },
   mounted() {
     //* 水印容器
-    // const container = this.generateWatermarkContainer();
+    const container = this.generateWatermarkContainer();
     //* 监听包含水印节点的容器
-    // this.observeWatermarkContainer(container.parentNode);
-    const pic = this.$refs["watermark-image"] as HTMLImageElement;
-    const picParent = pic.parentNode as Node;
-    console.log("pic=>", pic, picParent);
-    const canvasNode = document.createElement("canvas");
-    const picWithWatermark = this.createImageWithWatemark(pic, canvasNode);
-    picParent.replaceChild(picWithWatermark, pic);
+    this.observeWatermarkContainer(container.parentNode);
+    // const pic = this.$refs["watermark-image"] as HTMLImageElement;
+    // const picParent = pic.parentNode as Node;
+    // console.log("pic=>", pic, picParent);
+    // const canvasNode = document.createElement("canvas");
+    // const picWithWatermark = this.createImageWithWatemark(pic, canvasNode);
+    // picParent.replaceChild(picWithWatermark, pic);
+
   },
 
   methods: {
