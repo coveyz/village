@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from "vue-router";
+import { RouteRecordRaw, RouteLocationNormalized } from "vue-router";
 
 export type UserState = {
   token: string;
@@ -24,4 +24,14 @@ export type AppState = {
     withoutAnimation: boolean;
   };
   device: string;
+  size: string;
 };
+
+interface TagView extends Partial<RouteLocationNormalized> {
+  title?: string
+}
+
+export type TagsViewState = {
+  visitedViews: TagView[]
+  cachedViews: (string | undefined)[]
+}

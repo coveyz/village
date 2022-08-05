@@ -5,7 +5,7 @@ import App from "./App.vue";
 import ElementPlus from "element-plus";
 // import "element-plus/dist/index.css";
 // import 'element-plus/dist/index.css'
-import 'element-plus/lib/theme-chalk/index.css'
+// import 'element-plus/lib/theme-chalk/index.css'
 // import 'element-plus/lib/theme-chalk/index.css'
 import "@/styles/element-variables.scss"
 
@@ -23,6 +23,7 @@ import SvgIcon from "@/components/SvgIcon/index.vue";
 
 //* 全局权限
 import "./permission";
+import Cookies from "js-cookie";
 
 
 const app = createApp(App);
@@ -32,4 +33,6 @@ Object.keys(directive).forEach(key => {
   app.directive(key, (directive as { [key: string]: Directive })[key])
 })
 
-app.use(router).use(store).use(ElementPlus).mount("#app");
+app.use(router).use(store).use(ElementPlus, {
+  size: store.state.app.size || 'medium'
+}).mount("#app");

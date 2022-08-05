@@ -78,6 +78,12 @@ const componentsRoutes: RouteRecordRaw = {
       name: 'watermark',
       meta: { title: '水印', limit: 'components', icon: '' }
     },
+    {
+      path: 'change-theme',
+      component: () => import('@/views/components-demo/theme/index.vue'),
+      name: 'theme',
+      meta: { title: '主题', limit: 'components', icon: '' }
+    }
   ],
 };
 

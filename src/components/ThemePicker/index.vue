@@ -16,14 +16,13 @@ import {
   toRefs,
   watch,
 } from "vue";
-import { loading } from "@/utils/box"
-// import { version } from "element-plus/package";
-const version = require('element-plus/package').version;
+import { loading } from "@/utils/box";
+const version = require("element-plus/package").version;
 const ORIGINAL_THEME = "#409EFF"; // default color
 
 export default defineComponent({
   emits: ["change"],
-  setup (_, context) {
+  setup(_, context) {
     const store = useStore();
     const ctx = getCurrentInstance() as any;
     const state = reactive({
@@ -35,12 +34,16 @@ export default defineComponent({
       return store.state.setting.theme;
     });
 
-    watch(defaultTheme, (value: string) => {
-      console.log('xx')
-      state.theme = value;
-    },{
-      immediate:true
-    });
+    watch(
+      defaultTheme,
+      (value: string) => {
+        console.log("xx", value);
+        state.theme = value;
+      },
+      {
+        immediate: true,
+      }
+    );
 
     const getThemeCluster = (theme: string) => {
       const tintColor = (color: string, tint: number) => {
@@ -114,7 +117,9 @@ export default defineComponent({
         if (value) {
           const oldValue = state.chalk ? state.theme : ORIGINAL_THEME;
           const themeCluster = getThemeCluster(value.replace("#", ""));
+
           const originalCluster = getThemeCluster(oldValue.replace("#", ""));
+
           const loadingInstance = loading("theme.loading");
           if (!state.chalk) {
             const url = `https://unpkg.com/element-plus@${version}/lib/theme-chalk/index.css`;
@@ -130,6 +135,8 @@ export default defineComponent({
                 originalCluster,
                 themeCluster
               );
+
+              console.log("getHandler-newStyle=?", ctx[variable], variable);
               let styleTag = document.getElementById(id);
               if (!styleTag) {
                 styleTag = document.createElement("style");
