@@ -13,6 +13,12 @@ const componentsRoutes: RouteRecordRaw = {
   redirect: 'noredirect',
   children: [
     {
+      path: 'lowcode',
+      component: () => import('@/views/components-demo/lowcode/index.vue'),
+      name: 'lowcode',
+      meta: { title: 'lowcode', limit: 'components', icon: '' }
+    },
+    {
       path: "file",
       component: () => import("@/views/components-demo/file/index.vue"),
       name: "UploadFile",
@@ -83,7 +89,8 @@ const componentsRoutes: RouteRecordRaw = {
       component: () => import('@/views/components-demo/theme/index.vue'),
       name: 'theme',
       meta: { title: '主题', limit: 'components', icon: '' }
-    }
+    },
+
   ],
 };
 
