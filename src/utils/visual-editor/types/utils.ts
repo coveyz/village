@@ -107,6 +107,8 @@ type EditorPages = {
   [path: string]: EditorPage
 }
 
+
+
 export type ModelValueType = {
   /** 页面 */
   pages: EditorPages,
@@ -114,4 +116,10 @@ export type ModelValueType = {
   models: any[], //todo
   /** 动作 */
   actions: any // todo
+}
+
+export interface IState {
+  currentBlock: BlockData;
+  currentPage: EditorPage;
+  jsonData: ModelValueType
 }
