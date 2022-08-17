@@ -1,4 +1,4 @@
-import { reactive, watch, computed, readonly } from 'vue';
+import { reactive, watch, computed, readonly, inject } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { CacheEnum } from '../enums'
 import type { InjectionKey } from 'vue'
@@ -67,13 +67,19 @@ export const initVisualData = () => {
     console.log('delete deletePage')
   }
 
+  const overrideProject = () => {
+    console.log('todo overrideProject')
+  }
+
   return {
     jsonData: readonly(state.jsonData), // 保护JSONData避免直接修改
     currentPage: computed(() => state.currentPage),
     currentBlock: computed(() => state.currentBlock),
     updatePage,
     setCurrentPage,
-    deletePage
+    deletePage,
+    overrideProject
   }
 }
 
+export const useVisualData = () => inject<ReturnType<typeof initVisualData>>(injectKey)
